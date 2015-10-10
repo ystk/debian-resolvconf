@@ -1,0 +1,57 @@
+                     MAINTAINER NOTES
+                      for resolvconf
+
+TODO
+----
+* Add a Systemd unit file obeying the dictates of policy §9.11.
+  See #700846. 
+  Instructions from https://wiki.debian.org/Systemd/Packaging:
+  + Add Build-Depends on dh-systemd (>= 1.5)
+  + Run dh_systemd_enable before dh_installinit
+  + Run dh_systemd_start after dh_installinit
+
+* File bug reports against all packages containing suppliers of nameserver
+  information, asking each to add a resolvconf packaging-event hook script.
+  Still to be submitted: dhcpcd5, pump, udhcpc, unbound
+
+* In Jessie+1, drop the deletion of /etc/resolvconf/do-not-linkify-resolvconf.
+* In Jessie+1, drop the use of /etc/resolvconf/run; use /run/resolvconf directly.
+
+awk
+---
+We mustn't use awk in any runtime code but we may use it in the
+maintainer scripts where convenient.
+
+piuparts
+--------
+* Reports:
+
+    ERROR: FAIL: After purging files have been modified:
+      /etc/resolv.conf	 not owned
+
+  but this is not a bug, since resolvconf can justifiably modify
+  that file, which isn't an ordinary configuration file.
+
+
+Things to remember
+------------------
+Remember to run debconf-updatepo after changing a template or po file.
+
+When changing the interface-order file, remember also to change the
+patterns in bin/list-records.
+
+When changing the normalize_stdin function, remember also to update it
+in debian/test-normalization.
+
+
+Loop dangers
+------------
+Remember the interesting fact that postinst runs dpkg-event.d/foo
+which probably runs /sbin/resolvconf which probably runs update.d/foo.
+
+
+Famous quotations
+-----------------
+As Ian Jackson says (http://lists.debian.org/debian-dpkg/2008/03/msg00091.html)
+> OH FOR FUCK'S SAKE WHAT DOES IT TAKE TO GET SOMETHING DONE AROUND HERE?
+
