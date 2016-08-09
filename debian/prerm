@@ -1,0 +1,19 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+  remove)
+	if [ -x "/etc/init.d/resolvconf" ] ; then
+		if which invoke-rc.d >/dev/null 2>&1 ; then
+			invoke-rc.d resolvconf disable-updates || :
+		else
+			/etc/init.d/resolvconf disable-updates
+		fi
+	fi							
+	;;
+# *)
+	# deconfigure, upgrade, failed-upgrade
+esac
+
+#DEBHELPER#
+

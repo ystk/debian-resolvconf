@@ -1,0 +1,50 @@
+#!/bin/bash
+# Need bash because we use nullglob, extglob
+#
+# list-records
+#
+# Print, one per line, names of files in the current directory
+# that match the shell glob patterns in /etc/resolvconf/interface-order
+
+set -e
+
+# Stores arguments (minus duplicates) in RSLT, separated by newlines
+# Doesn't work properly if an argument itself contain whitespace
+uniquify()
+{
+	RSLT=""
+	while [ "$1" ] ; do
+		for E in $RSLT ; do
+			[ "$1" = "$E" ] && { shift ; continue 2 ; }
+		done
+		RSLT="${RSLT:+$RSLT
+}$1"
+		shift
+	done
+}
+
+### Compile ordered list of resolv.conf-type files ###
+PATTERNS="lo* eth* ath* wlan* ppp* *"
+if [ -r /etc/resolvconf/interface-order ] ; then
+	PATTERNS="$(sed -e '
+		s/^[[:space:]]\+//
+		s/[[:space:]].*//
+		s/#.*//
+		/\//d
+		/^~/d
+		/^\./d
+		/^$/d
+		' /etc/resolvconf/interface-order)"
+fi
+shopt -s nullglob extglob
+# Pathname expansion occurs on the following line resulting, in general,
+# in multiple instances of filenames; duplicates must be removed.
+uniquify $PATTERNS
+RCRDS=""
+for FLNM in $RSLT ; do
+	# Only list records of non-zero size
+	[ -s "$FLNM" ] && RCRDS="${RCRDS}${FLNM}
+"
+done
+echo -n "$RCRDS"
+exit 0

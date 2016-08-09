@@ -1,0 +1,345 @@
+# 
+#    Translators, if you are not familiar with the PO format, gettext
+#    documentation is worth reading, especially sections dedicated to
+#    this format, e.g. by running:
+#         info -n '(gettext)PO Files'
+#         info -n '(gettext)Header Entry'
+# 
+#    Some information specific to po-debconf are available at
+#            /usr/share/doc/po-debconf/README-trans
+#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
+# 
+#    Developers do not need to manually edit POT or PO files.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: resolvconf 1.34\n"
+"Report-Msgid-Bugs-To: resolvconf@packages.debian.org\n"
+"POT-Creation-Date: 2008-02-11 07:44+0100\n"
+"PO-Revision-Date: 2008-07-21 16:32+0100\n"
+"Last-Translator: Martin Bagge <brother@bsnet.se>\n"
+"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid "Prepare /etc/resolv.conf for dynamic updates?"
+msgstr "Förbered /etc/resolv.conf för dynamiska uppdateringar?"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"The resolvconf package contains the infrastructure required for dynamic "
+"updating of the resolver configuration file. Part of the necessary "
+"infrastructure is a symbolic link from /etc/resolv.conf to /etc/resolvconf/"
+"run/resolv.conf. If you choose this option then this link will be created; "
+"the existing /etc/resolv.conf file will be preserved as /etc/resolvconf/"
+"resolv.conf.d/original, and will be restored if this package is removed."
+msgstr ""
+"Detta paket innehåller infrastrukturen som krävs för dynamiska uppdateringar "
+"av filen för uppslagskonfigurationen. En del av den nödvändiga "
+"infrastrukturen är en symbolisk länk från /etc/resolv.conf till /etc/"
+"resolvconf/run/resolv.conf. Om du godkänner kommer denna länk att skapas. "
+"Den existerande filen /etc/resolv.conf kommer att behållas som /etc/"
+"resolvconf/resolv.conf.d/original; den kommer att återställas om detta paket "
+"tas bort."
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Declining this option will prevent future installations from recreating the "
+"symbolic link and therefore the resolver configuration file will not be "
+"dynamically updated. Dynamic updating can then be activated following "
+"instructions in the README file."
+msgstr ""
+"Negativt svar vid detta alternativ kommer att förhindra framtida "
+"installationer från att skapa symboliska länkar och därmed kan inte "
+"inställningsfilen uppdateras dynamiskt. Dynamiska uppdateringar kan "
+"återaktiveras genom att följa instruktionen i README-filen."
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"The presence of resolvconf can affect the behavior of other programs, so it "
+"should not be left installed if unconfigured."
+msgstr ""
+"Närvaron av resolvconf kan påverka hur andra program uppträder så programmet "
+"ska inte finnas installerat utan att vara konfigurerat."
+
+#. Type: note
+#. Description
+#: ../templates:3001
+msgid "Network interfaces reconfiguration mandatory"
+msgstr "Omkonfigurering av nätverkskort måste göras"
+
+#. Type: note
+#. Description
+#: ../templates:3001
+msgid ""
+"Once resolvconf is installed, interface configurers supply name server "
+"information to it (which it then makes available to the C library resolver "
+"and to DNS caches). However, they do this only when they bring up "
+"interfaces. Therefore for resolvconf's name server information to be up to "
+"date after initial installation it is necessary to reconfigure interfaces "
+"(that is, to take them down and then to bring them up again) and to restart "
+"DNS caches."
+msgstr ""
+"När resolvconf är installerat kommer gränssnittskonfiguratörer att bistå med "
+"namnserverinformation till det (som den gör tillgänglig till C-biblioteket "
+"resolver och till DNS-cache). Dock görs detta endast när de startar "
+"gränssnitten. För att resolvconfs namnserverinformation ska vara uppdaterad "
+"efter initial installation är det nödvändigt att återkonfigurera "
+"gränssnitten - alltså, stoppa och sedan starta dem -- och att starta om DNS-"
+"cache."
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid "Append original file to dynamic file?"
+msgstr "Lägg till originalfil till dynamisk fil?"
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"If the original static resolver configuration file (/etc/resolv.conf) "
+"contains name server addresses, those addresses should be listed on \"dns-"
+"nameservers\" lines in /etc/network/interfaces. For more information, please "
+"consult the resolvconf(8) man page and the README file."
+msgstr ""
+"Om den vanliga statiska uppslagningskonfigurationen (vanligen /etc/resolv."
+"conf) innehåller adresser för namnservrar ska dessa flyttas till /etc/"
+"network/interfaces, raderna ska ha prefixen \"dns-nameservers\". Läs mer i "
+"manualsidan resolvconf(8) och README-filen."
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"Until /etc/network/interfaces has been edited and the affected interfaces "
+"brought down and up again, the name server addresses will not be included in "
+"the dynamically generated resolver configuration file."
+msgstr ""
+"Så länge /etc/network/interfaces inte har ändrats och de påverkade "
+"gränssnitten stoppats och startats kommer namnservrarnas adresser inte att "
+"inkluderas i den dynamiskt skapade uppslagsningskonfigurationen."
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"If you choose this option, a temporary workaround will be put in place: a "
+"symbolic link will be created (if it does not already exist) from /etc/"
+"resolvconf/resolv.conf.d/tail to /etc/resolvconf/resolv.conf.d/original. "
+"This will cause the whole of that original resolver configuration file to be "
+"appended to the dynamically generated file."
+msgstr ""
+"Om du väljer detta alternativ så kommer en temporär omväg att skapas, en "
+"symbolisk länk placeras i /etc/resolvconf/resolv.conf.d/tail och den pekar "
+"på /etc/resolvconf/resolv.conf.d/original. Detta kommer medföra att hela den "
+"ursprungliga uppslagningskonfigurationen läggs till sist i den dynamiskt "
+"skapade filen."
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"After the required \"dns-nameservers\" lines have been added to /etc/network/"
+"interfaces, the /etc/resolvconf/resolv.conf.d/tail link should be replaced "
+"by one to /dev/null."
+msgstr ""
+"Efter du har modifierat /etc/network/interfaces och lagt till raderna för "
+"\"dns-nameservers\" som krävs bör du peka en symbolisk länk från /etc/"
+"resolvconf/resolv.conf.d/tail till /dev/null."
+
+#~ msgid ""
+#~ "If you wish to prevent future installations from recreating the symbolic "
+#~ "link then you can run dpkg-reconfigure later to withdraw your agreement."
+#~ msgstr ""
+#~ "Om du önskar att förhindra framtida installationer från att återskapa "
+#~ "symboliska länkar kan du köra dpkg-reconfigure senare för att ändra dina "
+#~ "inställningar."
+
+#~ msgid ""
+#~ "If you do not agree then the necessary symbolic link will not be created "
+#~ "and consequently your resolver configuration file will not be dynamically "
+#~ "updated. In order to activate dynamic updating you will have to configure "
+#~ "resolvconf manually following the straightforward instructions in the "
+#~ "README file. If you choose not to configure resolvconf at all then you "
+#~ "should remove the package because its presence causes some programs to "
+#~ "deviate from their default behavior."
+#~ msgstr ""
+#~ "Om du inte godkänner kommer den nödvändiga symboliska länken inte att "
+#~ "skapas och därför kommer din konfigurationsfil för uppslag inte att bli "
+#~ "dynamiskt uppdaterad. För att aktivera dynamiska uppdateringar behöver du "
+#~ "konfigurera resolvconf manuellt genom att följa instruktionerna i filen "
+#~ "README. Om du väljer att inte konfigurera resolvconf alls bör du ta bort "
+#~ "paketet därför att det kan orsaka störningar för vissa program."
+
+#~ msgid "However you decide, you should read the README file."
+#~ msgstr "Hur du än väljer bör du läsa filen README."
+
+#~ msgid "Remember to reconfigure network interfaces"
+#~ msgstr "Kom i håg att konfigurera om nätverksgränssnitten"
+
+#~ msgid ""
+#~ "If your original static resolver configuration file (/etc/resolv.conf) "
+#~ "contains nameserver addresses then those addresses should be listed on "
+#~ "\"dns-nameservers\" lines in /etc/network/interfaces as described in the "
+#~ "README. Until you have modified /etc/network/interfaces and reconfigured "
+#~ "the affected interfaces resolvconf will not include those addresses in "
+#~ "the dynamically generated resolver configuration file. Without those "
+#~ "addresses you may have trouble resolving domain names. A TEMPORARY "
+#~ "solution is to append the whole original resolver configuration file to "
+#~ "the end of the dynamically generated file. This will be done if there is "
+#~ "a symbolic link from /etc/resolvconf/resolv.conf.d/tail to /etc/"
+#~ "resolvconf/resolv.conf.d/original. If you agree then this symbolic link "
+#~ "will be created, provided that no /etc/resolvconf/resolv.conf.d/tail "
+#~ "already exists."
+#~ msgstr ""
+#~ "Om din ursprungliga konfigurationsfil för uppslag (/etc/resolv.conf) "
+#~ "innehåller namnserverinformation ska dessa adresser listas på raderna som "
+#~ "innehåller \"dns-nameservers\" i /etc/network/interfaces som beskrivits i "
+#~ "README-filen. Tills du har modifierat /etc/network/interfaces och "
+#~ "återkonfigurerat de berörda gränssnitten kommer resolvconf inte att "
+#~ "inkludera de adresserna i den dynamiskt genererade konfigurationsfilen "
+#~ "för uppslag. Utan dessa adresser kan du få problem att slå upp domännamn. "
+#~ "En TEMPORÄR lösning är att lägga till hela den ursprungliga "
+#~ "konfigurationsfilen på slutet av den dynamiskt genererade filen. Detta "
+#~ "kan göras om det finns en symbolisk länk från /etc/resolvconf/resolv.conf."
+#~ "d/tail till /etc/resolvconf/resolv.conf.d/original. Om du godkänner "
+#~ "kommer denna symboliska länk att skapas om ingen /etc/resolvconf/resolv."
+#~ "conf.d/tail redan existerar."
+
+#~ msgid "A rogue pppconfig PPP hook script is present"
+#~ msgstr "Ett påverkande PPP-kopplingsskript för pppconfig hittades"
+
+#~ msgid ""
+#~ "Certain versions of the pppconfig package contain scripts /etc/ppp/ip-up."
+#~ "d/0dns-up and /etc/ppp/ip-down.d/0dns-down (run by pppd after a PPP "
+#~ "interface is brought up or down) that overwrite /etc/resolv.conf. These "
+#~ "scripts must be modified, disabled or deleted so that they will not "
+#~ "interfere with the operation of resolvconf."
+#~ msgstr ""
+#~ "Vissa versioner av paketet pppconfig innehåller skripten /etc/ppp/ip-up."
+#~ "d/0dns-up och /etc/ppp/ip-down.d/0dns-down (körs av pppd efter ett PPP-"
+#~ "gränssnitt tas upp eller ner) som skriver över /etc/resolv.conf. Dessa "
+#~ "skript måste modifieras, stängas av eller tas bort så att de inte "
+#~ "påverkar resolvconf."
+
+#~ msgid ""
+#~ "A non-empty executable script /etc/ppp/ip-up.d/0dns-up and/or /etc/ppp/ip-"
+#~ "down.d/0dns-down has been detected that appears to overwrite /etc/resolv."
+#~ "conf. Each one that does so must be modified, disabled or deleted. The "
+#~ "best way to disable it is to remove its execute permission. The best way "
+#~ "to delete it is to purge the pppconfig package."
+#~ msgstr ""
+#~ "Ett icke-blankt startbart skript, /etc/ppp/ip-up.d/0dns-up och/eller /etc/"
+#~ "ppp/ip-down.d/0dns-down har identifierats och som verkar skriva över /etc/"
+#~ "resolv.conf. De måste modifieras, stängas av eller tas bort. Det bästa "
+#~ "sättet att stänga av de är att ta bort dess rättighet att starta. Det "
+#~ "bästa sättet att ta bort det är att rensa ut paketet pppconfig."
+
+#~ msgid "A rogue pppoeconf PPP hook script is present"
+#~ msgstr "Ett påverkande PPP-kopplingsskript för pppoeconf hittades"
+
+#~ msgid ""
+#~ "Versions of the pppoeconf package prior to version 1.0 contain a script /"
+#~ "etc/ppp/ip-up.d/000usepeerdns (run by pppd after a PPP interface is "
+#~ "brought up) that overwrites /etc/resolv.conf. The script must be "
+#~ "modified, disabled or deleted so that it will not interfere with the "
+#~ "operation of resolvconf. Contrary to Debian policy, merely removing the "
+#~ "pppoeconf package does not disable the script."
+#~ msgstr ""
+#~ "Versioner av paketet pppoeconf före version 1.0 innehåller ett skript, /"
+#~ "etc/ppp/ip-up.d/000usepeerdns (körs av pppd efter ett PPP-gränssnitt "
+#~ "satts upp) som skriver över /etc/resolv.conf. Skriptet måste modifieras, "
+#~ "stängas av eller tas bort så att det inte påverkar resolvconf. Tvärtemot "
+#~ "Debians policy räcker det inte att ta bort paketet pppoeconf för att "
+#~ "stänga av skriptet."
+
+#~ msgid ""
+#~ "A non-empty executable script /etc/ppp/ip-up.d/000usepeerdns has been "
+#~ "detected. It must be modified, disabled or deleted. The best way to "
+#~ "modify it is to upgrade the pppoeconf package to version 1.0 or later and "
+#~ "to allow dpkg to install the new version of the script. The best way to "
+#~ "disable it is to remove its execute permission. The best way to delete it "
+#~ "is to purge the pppoeconf package."
+#~ msgstr ""
+#~ "Ett icke-blankt startbart skript, /etc/ppp/ip-up.d/000usepeerdns har "
+#~ "identifierats. Det måste modifieras, stängas av eller tas bort. Det bästa "
+#~ "sättet att modifiera det är att uppgradera paketet pppoeconf till version "
+#~ "1.0 eller senare och att tillåta dpkg att installera den nya versionen av "
+#~ "skriptet. Det bästa sättet att stänga av det är att ta bort dess "
+#~ "rättighet att starta. Det bästa sättet att ta bort det är att rensa ut "
+#~ "paketet pppoeconf."
+
+#~ msgid "A rogue xisp PPP hook script is present"
+#~ msgstr "Ett påverkande PPP-kopplingsskript för xisp hittades"
+
+#~ msgid ""
+#~ "The xisp package contains scripts /etc/ppp/ip-up.d/0xisp-dns and /etc/ppp/"
+#~ "ip-down.d/0xisp-dns (run by pppd after a PPP interface is brought up or "
+#~ "down) that overwrite /etc/resolv.conf. The scripts must be modified, "
+#~ "disabled or deleted so that they will not interfere with the operation of "
+#~ "resolvconf. Contrary to Debian policy, merely removing the xisp package "
+#~ "does not disable the scripts."
+#~ msgstr ""
+#~ "Paketet xisp innehåller skripten /etc/ppp/ip-up.d/0xisp-dns och /etc/ppp/"
+#~ "ip-down.d/0xisp-dns (körs av pppd efter ett PPP-gränssnitt tas upp eller "
+#~ "ner) som skriver över /etc/resolv.conf. Dessa skript måste modifieras, "
+#~ "stängas av eller tas bort så att de inte påverkar resolvconf. Tvärtemot "
+#~ "Debians policy räcker det inte att ta bort paketet xisp för att stänga av "
+#~ "skripten."
+
+#~ msgid ""
+#~ "A non-empty executable script /etc/ppp/ip-up.d/0xisp-dns and/or /etc/ppp/"
+#~ "ip-down.d/0xisp-dns has been detected. Each one must be modified, "
+#~ "disabled or deleted. The best way to disable it is to remove its execute "
+#~ "permission. The best way to delete it is to purge the xisp package."
+#~ msgstr ""
+#~ "Ett icke-blankt startbart skript, /etc/ppp/ip-up.d/0xisp-dns och/eller /"
+#~ "etc/ppp/ip-down.d/0xisp-dns har identifierats. De måste modifieras, "
+#~ "stängas av eller tas bort. Det bästa sättet att stänga av de är att ta "
+#~ "bort dess rättighet att starta. Det bästa sättet att ta bort det är att "
+#~ "rensa ut paketet xisp."
+
+#~ msgid "Disable rogue hook scripts?"
+#~ msgstr "Stänga av påverkande kopplingsskript?"
+
+#~ msgid ""
+#~ "Certain packages contain hook scripts which, contrary to Debian policy, "
+#~ "modify the resolver configuration file even when the packages that own "
+#~ "them are removed. Packages known to contain such rogue hook scripts are: "
+#~ "pppconfig (<< 2.2.0 and 2.3), pppoeconf (<< 1.0), totd (<< 1.4-4) and "
+#~ "xisp. Although the resolvconf package is marked as conflicting with these "
+#~ "packages so that they are removed before resolvconf is installed, their "
+#~ "rogue hook scripts may remain behind."
+#~ msgstr ""
+#~ "Vissa paket innehåller kopplingsskript som, tvärtemot Debians policy, "
+#~ "modifierar konfigurationsfilen för uppslag även när paketen som äger dem "
+#~ "är borttagna. Paket kända att innehålla sådana påverkande kopplingsskript "
+#~ "är: pppconfig (<< 2.2.0 och 2.3), pppoeconf (<< 1.0), totd (<< 1.4-4) och "
+#~ "xisp. Även om paketet resolvconf är markerat för att vara i konflikt med "
+#~ "dessa paket så att de blir borttagna före resolvconf är installerat kan "
+#~ "deras kopplingsskript fortfarande finnas kvar."
+
+#~ msgid ""
+#~ "If you agree then the post-installation process will disable rogue hook "
+#~ "scripts by removing their execute permissions."
+#~ msgstr ""
+#~ "Om du godkänner kommer efterinstallationsprocessen att stänga av "
+#~ "påverkande kopplingsskript genom att ta bort deras starträttigheter. "
+
+#~ msgid ""
+#~ "If you do not agree then you should disable the rogue scripts manually, "
+#~ "otherwise resolvconf will not work properly."
+#~ msgstr ""
+#~ "Om du inte godkänner bör du stänga av de påverkande skripten manuellt "
+#~ "annars kommer inte resolvconf att fungera korrekt."

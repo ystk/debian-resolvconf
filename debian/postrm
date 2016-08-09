@@ -1,0 +1,38 @@
+#!/bin/sh
+
+set -e
+
+#DEBHELPER#
+
+case "$1" in
+remove)
+	# Restore /etc/resolv.conf
+	if \
+		[ -L /etc/resolv.conf ] \
+		&& { \
+			[ "$(readlink /etc/resolv.conf)" = "/etc/resolvconf/run/resolv.conf" ] \
+			|| [ "$(readlink /etc/resolv.conf)" = "resolvconf/run/resolv.conf" ] ; \
+		}
+	then
+		rm -f /etc/resolv.conf
+		if [ -e /etc/resolvconf/run/resolv.conf ] ; then
+			mv -f /etc/resolvconf/run/resolv.conf /etc/resolv.conf
+		elif [ -e /etc/resolvconf/resolv.conf.d/original ] ; then
+			mv -f /etc/resolvconf/resolv.conf.d/original /etc/resolv.conf
+		fi
+	fi
+	;;
+purge)
+	if [ -L /etc/resolvconf/run ] ; then
+		rm -f /etc/resolvconf/run
+	elif [ -d /etc/resolvconf/run ] ; then
+		rm -rf /etc/resolvconf/run
+	fi
+	rm -f /etc/resolvconf/resolv.conf.d/tail
+	rm -f /etc/resolvconf/resolv.conf.d/original
+	rm -f /etc/default/resolvconf
+	rmdir /lib/init/rw/resolvconf/interface || :
+	rmdir /lib/init/rw/resolvconf || :
+	;;
+esac
+

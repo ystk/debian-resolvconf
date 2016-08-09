@@ -1,0 +1,154 @@
+# Italian translation of the resolvconf debconf template
+# This file is distributed under the same license as the resolvconf package
+# Copyright (C) 2008 Free Software Foundation, Inc.
+# Luca Monducci <luca.mo@tiscali.it>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: resolvconf 1.39\n"
+"Report-Msgid-Bugs-To: resolvconf@packages.debian.org\n"
+"POT-Creation-Date: 2008-02-11 07:44+0100\n"
+"PO-Revision-Date: 2008-03-16 16:23+0100\n"
+"Last-Translator: Luca Monducci <luca.mo@tiscali.it>\n"
+"Language-Team: Italian <debian-l10n-italian@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid "Prepare /etc/resolv.conf for dynamic updates?"
+msgstr "Preparare /etc/resolv.conf per l'aggiornamento dinamico?"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"The resolvconf package contains the infrastructure required for dynamic "
+"updating of the resolver configuration file. Part of the necessary "
+"infrastructure is a symbolic link from /etc/resolv.conf to /etc/resolvconf/"
+"run/resolv.conf. If you choose this option then this link will be created; "
+"the existing /etc/resolv.conf file will be preserved as /etc/resolvconf/"
+"resolv.conf.d/original, and will be restored if this package is removed."
+msgstr ""
+"Il pacchetto resolvconf contiene l'infrastruttura necessaria per "
+"aggiornare dinamicamente il file di configurazione della risoluzione dei "
+"nomi. Parte fondamentale dell'infrastruttura è il collegamento simbolico /"
+"etc/resolv.conf verso /etc/resolvconf/run/resolv.conf. Se si accetta verrà "
+"creato questo collegamento; il file /etc/resolv.conf esistente viene "
+"preservato come /etc/resolvconf/resolv.conf.d/original e verrà ripristinato "
+"alla rimozione di questo pacchetto."
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Declining this option will prevent future installations from recreating the "
+"symbolic link and therefore the resolver configuration file will not be "
+"dynamically updated. Dynamic updating can then be activated following "
+"instructions in the README file."
+msgstr ""
+"Il rifiuto di questa opzione impedisce alle prossime installazioni di "
+"ricreare il collegamento simbolico e quindi la configurazione della "
+"risoluzione dei nomi non verrà aggiornata dinamicamente. L'aggiornamento "
+"dinamico può essere attivato seguendo le istruzioni nel file README."
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"The presence of resolvconf can affect the behavior of other programs, so it "
+"should not be left installed if unconfigured."
+msgstr ""
+"La presenza di resolvconf può influenzare il funzionamento di altri "
+"programmi, quindi non deve essere lasciato non configurato."
+
+#. Type: note
+#. Description
+#: ../templates:3001
+msgid "Network interfaces reconfiguration mandatory"
+msgstr "È indispensabile riconfigurare le interfacce di rete"
+
+#. Type: note
+#. Description
+#: ../templates:3001
+msgid ""
+"Once resolvconf is installed, interface configurers supply name server "
+"information to it (which it then makes available to the C library resolver "
+"and to DNS caches). However, they do this only when they bring up "
+"interfaces. Therefore for resolvconf's name server information to be up to "
+"date after initial installation it is necessary to reconfigure interfaces "
+"(that is, to take them down and then to bring them up again) and to restart "
+"DNS caches."
+msgstr ""
+"Una volta che resolvconf è stato installato, si deve configurare le "
+"interfacce di rete in modo che lo usino come name server (che a sua volta "
+"lo rende disponibile alla libreria C di risoluzione e alle cache DNS). "
+"Le interfacce fanno questa operazione solo durante l'attivazione, purtroppo "
+"le informazioni sul name server per resolvconf sono aggiornate solo dopo "
+"l'installazione iniziale e quindi è necessario riconfigurare le interfacce "
+"(cioè devono essere buttate giù e poi nuovamente tirate su) e riavviare le "
+"cache DNS."
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid "Append original file to dynamic file?"
+msgstr "Aggiungere il file originale al file dinamico?"
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"If the original static resolver configuration file (/etc/resolv.conf) "
+"contains name server addresses, those addresses should be listed on \"dns-"
+"nameservers\" lines in /etc/network/interfaces. For more information, please "
+"consult the resolvconf(8) man page and the README file."
+msgstr ""
+"Se il file di configurazione della risoluzione dei nomi (/etc/resolv.conf) "
+"contiene gli indirizzi del name server, questi indirizzi devono essere "
+"elencati nelle righe \"dns-nameservers\" in /etc/network/interfaces. Per "
+"ulteriori informazioni consultare la pagina man di resolvconf(8) e il file "
+"README."
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"Until /etc/network/interfaces has been edited and the affected interfaces "
+"brought down and up again, the name server addresses will not be included in "
+"the dynamically generated resolver configuration file."
+msgstr ""
+"Finché non viene modificato /etc/network/interfaces e le interfacce non sono "
+"disattivate e poi riattivate, gli indirizzi del name server non verranno "
+"inseriti nel file di configurazione della risoluzione dei nomi generato "
+"dinamicamente."
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"If you choose this option, a temporary workaround will be put in place: a "
+"symbolic link will be created (if it does not already exist) from /etc/"
+"resolvconf/resolv.conf.d/tail to /etc/resolvconf/resolv.conf.d/original. "
+"This will cause the whole of that original resolver configuration file to be "
+"appended to the dynamically generated file."
+msgstr ""
+"Se si accetta, viene realizzata un soluzione temporanea: viene creato (se "
+"non esiste) un collegamento simbolico da /etc/resolvconf/resolv.conf.d/tail "
+"a /etc/resolvconf/resolv.conf.d/original. Questo comporta che il file "
+"originale di configurazione per la risoluzione dei nomi viene aggiunto in "
+"coda a quello generato dinamicamente."
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"After the required \"dns-nameservers\" lines have been added to /etc/network/"
+"interfaces, the /etc/resolvconf/resolv.conf.d/tail link should be replaced "
+"by one to /dev/null."
+msgstr ""
+"Una volta aggiunte le righe obbligatorie \"dns-nameservers\" a /etc/network/"
+"interfaces, il collegamento /etc/resolvconf/resolv.conf.d/tail deve essere "
+"sostituito con uno verso /dev/null."

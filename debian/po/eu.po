@@ -1,0 +1,152 @@
+# translation of resolvconf-eu.po to Euskara
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Piarres Beobide EGaña <pi@beobide.net>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: resolvconf-eu\n"
+"Report-Msgid-Bugs-To: resolvconf@packages.debian.org\n"
+"POT-Creation-Date: 2008-02-11 07:44+0100\n"
+"PO-Revision-Date: 2009-06-25 11:48+0200\n"
+"Last-Translator: Piarres Beobide <pi@beobide.net>\n"
+"Language-Team: Euskara <debian-l10n-eu@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid "Prepare /etc/resolv.conf for dynamic updates?"
+msgstr "Prestatu /etc/resolv.conf eguneraketa dinamikoentzat?"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"The resolvconf package contains the infrastructure required for dynamic "
+"updating of the resolver configuration file. Part of the necessary "
+"infrastructure is a symbolic link from /etc/resolv.conf to /etc/resolvconf/"
+"run/resolv.conf. If you choose this option then this link will be created; "
+"the existing /etc/resolv.conf file will be preserved as /etc/resolvconf/"
+"resolv.conf.d/original, and will be restored if this package is removed."
+msgstr ""
+"Resolvconf paketeak ebazte konfigurazio fitxategia automatikoki "
+"eguneratzeko beharrezko azpiegitura du. Beharrezko azpiegitura "
+"horren zati bat /etc/resolv.conf eta /etc/resolvconf/run/resolv.conf "
+"arteko lotura sinboliko bat da. Aukera hau hautatuaz gero lotura "
+"hori sortu egingo da; aurreko /etc/resolv.conf fitxategia /etc/resolvconf/"
+"resolv.conf.d/original izenaz gordeko da eta paketea kentzen bada berriz "
+"bere lekuan ipiniko da."
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Declining this option will prevent future installations from recreating the "
+"symbolic link and therefore the resolver configuration file will not be "
+"dynamically updated. Dynamic updating can then be activated following "
+"instructions in the README file."
+msgstr ""
+"Aukera hau baztertzeak hurrengo instalazioetan lotura sortzea desgaituko du, "
+"beraz ebazte konfigurazio fitxategia ez da dinamikoki eguneratuko. "
+"Eguneraketa dinamikoa README fitxategiko argibideak jarraituaz gaitu daiteke."
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"The presence of resolvconf can affect the behavior of other programs, so it "
+"should not be left installed if unconfigured."
+msgstr ""
+"Resolvconf egoteak beste programa batzuen portamoldea aldatu dezake, beraz "
+"ez litzateke konfiguratu gabe instalaturik utzi beharko."
+
+#. Type: note
+#. Description
+#: ../templates:3001
+msgid "Network interfaces reconfiguration mandatory"
+msgstr "Sare interfaze birkonfigurazioa beharrezkoa"
+
+#. Type: note
+#. Description
+#: ../templates:3001
+msgid ""
+"Once resolvconf is installed, interface configurers supply name server "
+"information to it (which it then makes available to the C library resolver "
+"and to DNS caches). However, they do this only when they bring up "
+"interfaces. Therefore for resolvconf's name server information to be up to "
+"date after initial installation it is necessary to reconfigure interfaces "
+"(that is, to take them down and then to bring them up again) and to restart "
+"DNS caches."
+msgstr ""
+"Behin resolvconf instalaturik dagoela, interfaze konfigurazioak emango dizkio "
+"izen zerbitzariaren argibideak (honek C liburutegi ebazte eta DNS cache-ei "
+"eskurgarri egingo die). Hau bakarrik interfazeak altxatzean egingo dute. Hala ere "
+"resolvconf-ren izen zerbitzari argibideak instalatu ondoren behar bezala egoteko "
+"beharrezkoa da interfazeak birkonfiguratzea (hau da, interfazeak desgaitu eta "
+"berriz gaitzea) eta DNS cache-ak berrabiaraztea."
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid "Append original file to dynamic file?"
+msgstr "Erantsi jatorrizko fitxategia fitxategi dinamikora?"
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"If the original static resolver configuration file (/etc/resolv.conf) "
+"contains name server addresses, those addresses should be listed on \"dns-"
+"nameservers\" lines in /etc/network/interfaces. For more information, please "
+"consult the resolvconf(8) man page and the README file."
+msgstr ""
+"Jatorrizko ebazpen 'finko' konfigurazio fitxategiak (etc/resolv.conf) izen "
+"zerbitzariak baditu, helbide horiek /etc/network/interfaces fitxategiko "
+"\"dns-nameservers\" lerroetan gehitu beharko dira. Argibide gehiagorako "
+"irakurri itzazu resolvconf(8) manual orrialdea eta README fitxategia."
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"Until /etc/network/interfaces has been edited and the affected interfaces "
+"brought down and up again, the name server addresses will not be included in "
+"the dynamically generated resolver configuration file."
+msgstr ""
+"Behin /etc/network/interfaces editatua izan denean eta dagozkion interfazeak "
+"desgaitu eta gaitu arte izen zerbitzari helbideak ez dira gehituko dinamikoki "
+"sortutako ebazte konfigurazio fitxategian."
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"If you choose this option, a temporary workaround will be put in place: a "
+"symbolic link will be created (if it does not already exist) from /etc/"
+"resolvconf/resolv.conf.d/tail to /etc/resolvconf/resolv.conf.d/original. "
+"This will cause the whole of that original resolver configuration file to be "
+"appended to the dynamically generated file."
+msgstr ""
+"Aukera hau hautatzen baduzu aldiroko portamolde bat erabiliko da, lotura "
+"sinboliko bat sortuko da (dagoeneko ez badago) /etc/resolvconf/"
+"resolv.conf.d/tail eta /etc/resolvconf/resolv.conf.d/original artean. Honela "
+"jatorrizko ebazte konfigurazio fitxategia dinamikoki sortutakoari erantsiko "
+"zaio."
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"After the required \"dns-nameservers\" lines have been added to /etc/network/"
+"interfaces, the /etc/resolvconf/resolv.conf.d/tail link should be replaced "
+"by one to /dev/null."
+msgstr ""
+"Behin beharrezko \"dns-nameservers\" lerroak /etc/network/interfaces "
+"fitxategira gehitu direnean, /etc/resolvconf/resolv.conf.d/tail lotura "
+"/dev/null-erako batez ordeztu beharko zen."
+

@@ -1,0 +1,337 @@
+# Galician translation of resolvconf's debconf templates
+# This file is distributed under the same license as the resolvconf package.
+# Jacobo Tarrio <jtarrio@debian.org>, 2007, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: resolvconf 1.37\n"
+"Report-Msgid-Bugs-To: resolvconf@packages.debian.org\n"
+"POT-Creation-Date: 2008-02-11 07:44+0100\n"
+"PO-Revision-Date: 2008-02-11 19:03+0000\n"
+"Last-Translator: Jacobo Tarrio <jtarrio@debian.org>\n"
+"Language-Team: Galician <proxecto@trasno.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid "Prepare /etc/resolv.conf for dynamic updates?"
+msgstr "¿Preparar /etc/resolv.conf para actualizacións dinámicas?"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"The resolvconf package contains the infrastructure required for dynamic "
+"updating of the resolver configuration file. Part of the necessary "
+"infrastructure is a symbolic link from /etc/resolv.conf to /etc/resolvconf/"
+"run/resolv.conf. If you choose this option then this link will be created; "
+"the existing /etc/resolv.conf file will be preserved as /etc/resolvconf/"
+"resolv.conf.d/original, and will be restored if this package is removed."
+msgstr ""
+"O paquete \"resolvconf\" contén a infraestrutura necesaria para actualizar "
+"dinamicamente o ficheiro de configuración do resolvedor. Parte dela é unha "
+"ligazón simbólica de /etc/resolv.conf a /etc/resolvconf/run/resolv.conf. Se "
+"escolle esta opción, hase crear esa ligazón; o ficheiro /etc/resolv.conf "
+"existente hase conservar coma /etc/resolvconf/resolv.conf.d/original , e "
+"hase restaurar se se elimina este paquete."
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Declining this option will prevent future installations from recreating the "
+"symbolic link and therefore the resolver configuration file will not be "
+"dynamically updated. Dynamic updating can then be activated following "
+"instructions in the README file."
+msgstr ""
+"Se rexeita esta opción, as futuras instalacións non han poder volver crear a "
+"ligazón simbólica e, polo tanto, non se ha actualizar dinamicamente o "
+"ficheiro de configuración do resolvedor. A actualización dinámica hase poder "
+"activar seguindo as instruccións do ficheiro README."
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"The presence of resolvconf can affect the behavior of other programs, so it "
+"should not be left installed if unconfigured."
+msgstr ""
+"A presencia de resolvconf pode afectar ao comportamento de outros programas, "
+"así que non se debería deixar instalado sen configurar."
+
+#. Type: note
+#. Description
+#: ../templates:3001
+msgid "Network interfaces reconfiguration mandatory"
+msgstr "A reconfiguración das interfaces de rede é obrigatoria"
+
+#. Type: note
+#. Description
+#: ../templates:3001
+msgid ""
+"Once resolvconf is installed, interface configurers supply name server "
+"information to it (which it then makes available to the C library resolver "
+"and to DNS caches). However, they do this only when they bring up "
+"interfaces. Therefore for resolvconf's name server information to be up to "
+"date after initial installation it is necessary to reconfigure interfaces "
+"(that is, to take them down and then to bring them up again) and to restart "
+"DNS caches."
+msgstr ""
+"Despois de instalar resolvconf, os configuradores de interfaces hanlle "
+"fornecer información sobre os servidores de nomes (que despois fai "
+"dispoñible ao resolvedor da biblioteca de C e ás cachés de DNS). "
+"Nembargantes, só o fan ao activar interfaces. Polo tanto, para que a "
+"información sobre servidores de nomes de resolvconf estea actualizada trala "
+"instalación inicial é necesario reconfigurar as interfaces (é dicir, "
+"baixalas e volvelas erguer) e reiniciar as cachés de DNS."
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid "Append original file to dynamic file?"
+msgstr "¿Engadir o ficheiro orixinal ao ficheiro dinámico?"
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"If the original static resolver configuration file (/etc/resolv.conf) "
+"contains name server addresses, those addresses should be listed on \"dns-"
+"nameservers\" lines in /etc/network/interfaces. For more information, please "
+"consult the resolvconf(8) man page and the README file."
+msgstr ""
+"Se o ficheiro de configuración do resolvedor estático orixinal (/etc/resolv."
+"conf) contén enderezos de servidores de nomes, eses enderezos deberían "
+"figurar en liñas \"dns-nameservers\" do ficheiro /etc/network/interfaces. "
+"Para máis información, consulte a páxina de manual de resolvconf(8) e o "
+"ficheiro README."
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"Until /etc/network/interfaces has been edited and the affected interfaces "
+"brought down and up again, the name server addresses will not be included in "
+"the dynamically generated resolver configuration file."
+msgstr ""
+"Ata que edite o ficheiro /etc/network/interfaces e as interfaces afectadas "
+"se baixen e volvan erguer, non se han incluír os enderezos dos servidores de "
+"nomes no ficheiro de configuración do resolvedor xerado dinamicamente."
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"If you choose this option, a temporary workaround will be put in place: a "
+"symbolic link will be created (if it does not already exist) from /etc/"
+"resolvconf/resolv.conf.d/tail to /etc/resolvconf/resolv.conf.d/original. "
+"This will cause the whole of that original resolver configuration file to be "
+"appended to the dynamically generated file."
+msgstr ""
+"Se escolle esta opción, hase establecer unha solución temporal: hase crear "
+"unha ligazón simbólica (se non existe xa) de /etc/resolvconf/resolv.conf.d/"
+"tail a /etc/resolvconf/resolv.conf.d/original . Isto ha facer que todo o "
+"contido dese ficheiro de configuración orixinal se engada ao ficheiro xerado "
+"dinamicamente."
+
+#. Type: boolean
+#. Description
+#: ../templates:4001
+msgid ""
+"After the required \"dns-nameservers\" lines have been added to /etc/network/"
+"interfaces, the /etc/resolvconf/resolv.conf.d/tail link should be replaced "
+"by one to /dev/null."
+msgstr ""
+"Despois de engadir as liñas \"dns-nameserver\" necesarias ao ficheiro /etc/"
+"network/interfaces , deberíase substituír a ligazón /etc/resolvconf/resolv."
+"conf.d/tail por unha ligazón a /dev/null."
+
+#~ msgid ""
+#~ "If you wish to prevent future installations from recreating the symbolic "
+#~ "link then you can run dpkg-reconfigure later to withdraw your agreement."
+#~ msgstr ""
+#~ "Se quere evitar que as instalacións futuras volvan crear a ligazón "
+#~ "simbólica, pode executar dpkg-reconfigure máis tarde para eliminar a súa "
+#~ "aceptación."
+
+#~ msgid ""
+#~ "If you do not agree then the necessary symbolic link will not be created "
+#~ "and consequently your resolver configuration file will not be dynamically "
+#~ "updated. In order to activate dynamic updating you will have to configure "
+#~ "resolvconf manually following the straightforward instructions in the "
+#~ "README file. If you choose not to configure resolvconf at all then you "
+#~ "should remove the package because its presence causes some programs to "
+#~ "deviate from their default behavior."
+#~ msgstr ""
+#~ "Se non o acepta, non se ha crear a ligazón simbólica necesaria e, polo "
+#~ "tanto, non se ha actualizar dinamicamente o ficheiro de configuración do "
+#~ "resolvedor. Para activar as actualizacións dinámicas ha ter que "
+#~ "configurar resolvconf manualmente seguindo as instruccións do ficheiro "
+#~ "README. Se decide non configurar resolvconf en absoluto debería eliminar "
+#~ "o paquete porque a súa presencia fai que algúns programas cambien de "
+#~ "comportamento."
+
+#~ msgid "However you decide, you should read the README file."
+#~ msgstr "Decida o que decida, debería consultar o ficheiro README."
+
+#~ msgid "Remember to reconfigure network interfaces"
+#~ msgstr "Lembre configurar as interfaces de rede"
+
+#~ msgid ""
+#~ "If your original static resolver configuration file (/etc/resolv.conf) "
+#~ "contains nameserver addresses then those addresses should be listed on "
+#~ "\"dns-nameservers\" lines in /etc/network/interfaces as described in the "
+#~ "README. Until you have modified /etc/network/interfaces and reconfigured "
+#~ "the affected interfaces resolvconf will not include those addresses in "
+#~ "the dynamically generated resolver configuration file. Without those "
+#~ "addresses you may have trouble resolving domain names. A TEMPORARY "
+#~ "solution is to append the whole original resolver configuration file to "
+#~ "the end of the dynamically generated file. This will be done if there is "
+#~ "a symbolic link from /etc/resolvconf/resolv.conf.d/tail to /etc/"
+#~ "resolvconf/resolv.conf.d/original. If you agree then this symbolic link "
+#~ "will be created, provided that no /etc/resolvconf/resolv.conf.d/tail "
+#~ "already exists."
+#~ msgstr ""
+#~ "Se o seu ficheiro estático orixinal de configuración do resolvedor (/etc/"
+#~ "resolv.conf) contén enderezos de servidores de nomes, eses enderezos "
+#~ "deberían aparecer en liñas \"dns-nameservers\" de /etc/network/interfaces "
+#~ "tal como se describe no ficheiro README. Ata que teña modificado /etc/"
+#~ "network/interfaces e reconfiguradas as interfaces afectadas, resolvconf "
+#~ "non ha incluír eses enderezos no ficheiro de configuración do resolvedor "
+#~ "xerado dinamicamente. Sen eses enderezos pode ter problemas para resolver "
+#~ "nomes de dominio. Unha solución TEMPORAL é engadir o ficheiro de "
+#~ "configuración orixinal ao final do ficheiro xerado dinamicamente. Isto "
+#~ "hase facer se existe unha ligazón simbólica de /etc/resolvconf/resolv."
+#~ "conf.d/tail a /etc/resolvconf/resolv.conf.d/original. Se acepta isto, "
+#~ "hase crear esta ligazón simbólica, sempre e cando non exista xa /etc/"
+#~ "resolvconf/resolv.conf.d/tail."
+
+#~ msgid "A rogue pppconfig PPP hook script is present"
+#~ msgstr "Existe un script de enganche en PPP de pppconfig non válido"
+
+#~ msgid ""
+#~ "Certain versions of the pppconfig package contain scripts /etc/ppp/ip-up."
+#~ "d/0dns-up and /etc/ppp/ip-down.d/0dns-down (run by pppd after a PPP "
+#~ "interface is brought up or down) that overwrite /etc/resolv.conf. These "
+#~ "scripts must be modified, disabled or deleted so that they will not "
+#~ "interfere with the operation of resolvconf."
+#~ msgstr ""
+#~ "Algunhas versións do paquete pppconfig conteñen scripts /etc/ppp/ip-up."
+#~ "d/0dns-up e /etc/ppp/ip-down.d/0dns-down (executados por pppd despois de "
+#~ "activar ou desactivar unha interface PPP) que sobrescriben /etc/resolv."
+#~ "conf. É necesario modificar, desactivar ou eliminar eses scripts para que "
+#~ "non interfiran co funcionamento de resolvconf."
+
+#~ msgid ""
+#~ "A non-empty executable script /etc/ppp/ip-up.d/0dns-up and/or /etc/ppp/ip-"
+#~ "down.d/0dns-down has been detected that appears to overwrite /etc/resolv."
+#~ "conf. Each one that does so must be modified, disabled or deleted. The "
+#~ "best way to disable it is to remove its execute permission. The best way "
+#~ "to delete it is to purge the pppconfig package."
+#~ msgstr ""
+#~ "Detectouse un script executable non baleiro /etc/ppp/ip-up.d/0dns-up e/"
+#~ "ou /etc/ppp/ip-down.d/0dns-down que semella que sobrescribe o ficheiro /"
+#~ "etc/resolv.conf. Hai que modificar, desactivar ou eliminar cada un dos "
+#~ "scripts que faga iso. O mellor xeito de desactivalo é eliminar os seus "
+#~ "permisos de execución. O mellor xeito de borralo é purgar o paquete "
+#~ "pppconfig."
+
+#~ msgid "A rogue pppoeconf PPP hook script is present"
+#~ msgstr "Existe un script de enganche en PPP de pppoeconf non válido"
+
+#~ msgid ""
+#~ "Versions of the pppoeconf package prior to version 1.0 contain a script /"
+#~ "etc/ppp/ip-up.d/000usepeerdns (run by pppd after a PPP interface is "
+#~ "brought up) that overwrites /etc/resolv.conf. The script must be "
+#~ "modified, disabled or deleted so that it will not interfere with the "
+#~ "operation of resolvconf. Contrary to Debian policy, merely removing the "
+#~ "pppoeconf package does not disable the script."
+#~ msgstr ""
+#~ "Algunhas versións do paquete pppoeconf anteriores á 1.0 conteñen un "
+#~ "script /etc/ppp/ip-up.d/000usepeerdns (executado por pppd despois de "
+#~ "activar unha interface PPP) que sobrescribe /etc/resolv.conf. É necesario "
+#~ "modificar, desactivar ou eliminar ese script para que non interfira co "
+#~ "funcionamento de resolvconf. De xeito contrario á normativa de Debian, se "
+#~ "elimina o paquete pppoeconf non ha desactivar o script."
+
+#~ msgid ""
+#~ "A non-empty executable script /etc/ppp/ip-up.d/000usepeerdns has been "
+#~ "detected. It must be modified, disabled or deleted. The best way to "
+#~ "modify it is to upgrade the pppoeconf package to version 1.0 or later and "
+#~ "to allow dpkg to install the new version of the script. The best way to "
+#~ "disable it is to remove its execute permission. The best way to delete it "
+#~ "is to purge the pppoeconf package."
+#~ msgstr ""
+#~ "Detectouse un script executable non baleiro /etc/ppp/ip-up."
+#~ "d/000usepeerdns. Hai que modificar, desactivar ou eliminar ese script. O "
+#~ "mellor xeito de modificalo é actualizar o paquete pppoeconf á versión 1.0 "
+#~ "ou posterior e permitir que dpkg instale a nova versión do script. O "
+#~ "mellor xeito de desactivalo é eliminar os seus permisos de execución. O "
+#~ "mellor xeito de borralo é purgar o paquete pppoeconf."
+
+#~ msgid "A rogue xisp PPP hook script is present"
+#~ msgstr "Existe un script de enganche en PPP de xisp non válido"
+
+#~ msgid ""
+#~ "The xisp package contains scripts /etc/ppp/ip-up.d/0xisp-dns and /etc/ppp/"
+#~ "ip-down.d/0xisp-dns (run by pppd after a PPP interface is brought up or "
+#~ "down) that overwrite /etc/resolv.conf. The scripts must be modified, "
+#~ "disabled or deleted so that they will not interfere with the operation of "
+#~ "resolvconf. Contrary to Debian policy, merely removing the xisp package "
+#~ "does not disable the scripts."
+#~ msgstr ""
+#~ "O paquete xisp contén os scripts /etc/ppp/ip-up.d/0xisp-dns e /etc/ppp/ip-"
+#~ "down.d/0xisp-dns (executados por pppd despois de activar ou desactivar "
+#~ "unha interface PPP) que sobrescriben /etc/resolv.conf. É necesario "
+#~ "modificar, desactivar ou eliminar eses scripts para que non interfiran co "
+#~ "funcionamento de resolvconf. De xeito contrario á normativa de Debian, se "
+#~ "elimina o paquete pppoeconf non ha desactivar o script."
+
+#~ msgid ""
+#~ "A non-empty executable script /etc/ppp/ip-up.d/0xisp-dns and/or /etc/ppp/"
+#~ "ip-down.d/0xisp-dns has been detected. Each one must be modified, "
+#~ "disabled or deleted. The best way to disable it is to remove its execute "
+#~ "permission. The best way to delete it is to purge the xisp package."
+#~ msgstr ""
+#~ "Detectouse un script executable non baleiro /etc/ppp/ip-up.d/0xisp-dns e/"
+#~ "ou /etc/ppp/ip-down.d/0xisp-dns. Hai que modificar, desactivar ou "
+#~ "eliminar cada un deses scripts. O mellor xeito de desactivalo é eliminar "
+#~ "os seus permisos de escritora. O mellor xeito de borralo é purgar o "
+#~ "paquete xisp."
+
+#~ msgid "Disable rogue hook scripts?"
+#~ msgstr "¿Desactivar os scripts de enganche non válidos?"
+
+#~ msgid ""
+#~ "Certain packages contain hook scripts which, contrary to Debian policy, "
+#~ "modify the resolver configuration file even when the packages that own "
+#~ "them are removed. Packages known to contain such rogue hook scripts are: "
+#~ "pppconfig (<< 2.2.0 and 2.3), pppoeconf (<< 1.0), totd (<< 1.4-4) and "
+#~ "xisp. Although the resolvconf package is marked as conflicting with these "
+#~ "packages so that they are removed before resolvconf is installed, their "
+#~ "rogue hook scripts may remain behind."
+#~ msgstr ""
+#~ "Algúns paquetes conteñen scripts de enganche que, en contra da normativa "
+#~ "de Debian, modifican o ficheiro de configuración do resolvedor incluso "
+#~ "cando se eliminan os paquetes que os conteñen. Os paquetes que se sabe "
+#~ "que conteñen tales scripts son: pppconfig (<< 2.2.0 e 2.3), ppoeconf (<< "
+#~ "1.0), totd (<< 1.4-4) e xisp. Aínda que o paquete resolvconf ten unha "
+#~ "marca de conflicto con eses paquetes para que se eliminen antes de "
+#~ "instalar resolvconf, os seus scripts non válidos poden quedar instalados."
+
+#~ msgid ""
+#~ "If you agree then the post-installation process will disable rogue hook "
+#~ "scripts by removing their execute permissions."
+#~ msgstr ""
+#~ "Se acepta isto, o proceso de post-instalación ha desactivar os scripts de "
+#~ "enganche non válidos quitándolles os permisos de execución."
+
+#~ msgid ""
+#~ "If you do not agree then you should disable the rogue scripts manually, "
+#~ "otherwise resolvconf will not work properly."
+#~ msgstr ""
+#~ "Se non o acepta debería desactivar os scripts manualmente; se non, "
+#~ "resolvconf non ha funcionar correctamente."

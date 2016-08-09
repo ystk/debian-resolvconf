@@ -1,0 +1,160 @@
+#!/bin/sh
+
+set -e
+
+. /usr/share/debconf/confmodule
+
+MYNAME=resolvconf.postinst
+report() { echo "${MYNAME}: $*" ; }
+report_err() { report "Error: $*" >&2 ; }
+report_info() { report "Info: $*" >&2 ; }
+
+### Create /etc/resolvconf/run ###
+#
+# Unfortunately we can't keep state files in /var/run/ because 
+# resolvconf, as it must, initializes before networking does and
+# /var/ can be on the network.  In the past we used /dev/shm/
+# but now we use /lib/init/rw/.
+#
+case "$1" in
+  configure|reconfigure)
+	# If it's a symlink, ensure that it is canonicalizable
+	if [ -L /etc/resolvconf/run ] ; then
+		RUN_CANONICALPATH="$(readlink -f /etc/resolvconf/run || :)"
+		if [ -z "$RUN_CANONICALPATH" ] ; then
+			report_err "Deleting /etc/resolvconf/run symlink whose canonical path could not be determined"
+			rm -f /etc/resolvconf/run
+		elif \
+			[ "$RUN_CANONICALPATH" = "/dev/shm/resolvconf" ] \
+			&& [ -d /lib/init/rw ] \
+			&& [ -w /lib/init/rw ] \
+			&& [ -r /proc/mounts ] \
+			&& grep -qs "^tmpfs[[:space:]]\+/lib/init/rw[[:space:]]\+tmpfs[[:space:]]\+\([^[:space:]]\+,\)\?rw" /proc/mounts \
+			&& { [ -d /lib/init/rw/resolvconf ] || mkdir -v /lib/init/rw/resolvconf ; } \
+			&& { [ -d /lib/init/rw/resolvconf/interface ] || mkdir -v /lib/init/rw/resolvconf/interface ; } \
+			&& F="$(echo /dev/shm/resolvconf/*)" \
+			&& [ "$F" ] \
+			&& [ "$F" != '/dev/shm/resolvconf/*' ] \
+			&& cp -a /dev/shm/resolvconf/* /lib/init/rw/resolvconf
+		then
+			report_info "Migrating run-time database from /dev/shm/resolvconf to /lib/init/rw/resolvconf"
+			ln -nsf /lib/init/rw/resolvconf /etc/resolvconf/run
+		fi
+	fi
+	# Delete it if it isn't a directory or a link to one
+	if [ -e /etc/resolvconf/run ] && [ ! -d /etc/resolvconf/run ] ; then
+		report_err "Deleting /etc/resolvconf/run which isn't a directory"
+		rm -f /etc/resolvconf/run
+	fi
+	# Now /etc/resolvconf/run is either
+	# * nonexistent, or
+	# * a dangling but canonicalizable symlink, or
+	# * a symlink to a directory, or
+	# * a directory
+	if [ -d /etc/resolvconf/run ] ; then
+		# It's a directory or a symlink to one
+		[ -d /etc/resolvconf/run/interface ] || mkdir -v /etc/resolvconf/run/interface
+	elif [ -L /etc/resolvconf/run ] ; then
+		# It's a dangling but canonicalizable symlink
+		mkdir -v "$RUN_CANONICALPATH" "${RUN_CANONICALPATH}/interface"
+	else
+		# It's nonexistent
+		#
+		# TODO: In order to ensure that this code is equivalent to the earlier block,
+		#       put it into a function
+		#
+		if \
+			[ -d /lib/init/rw ] \
+			&& [ -w /lib/init/rw ] \
+			&& [ -r /proc/mounts ] \
+			&& grep -qs "^tmpfs[[:space:]]\+/lib/init/rw[[:space:]]\+tmpfs[[:space:]]\+\([^[:space:]]\+,\)\?rw" /proc/mounts \
+			&& { [ -d /lib/init/rw/resolvconf ] || mkdir -v /lib/init/rw/resolvconf ; } \
+			&& { [ -d /lib/init/rw/resolvconf/interface ] || mkdir -v /lib/init/rw/resolvconf/interface ; }
+		then
+			ln -s /lib/init/rw/resolvconf /etc/resolvconf/run
+		else
+			mkdir -v /etc/resolvconf/run /etc/resolvconf/run/interface
+		fi
+	fi
+	;;
+  # *)
+	# In other modes we don't need to do anything
+	# because we didn't take any action in the prerm
+	# ;;
+esac
+
+# We use dh_installinit with --no-start
+#DEBHELPER#
+
+### Link tail to original if appropriate ###
+TIME_TO_CHANGE_TAIL_LINK=no
+case "$1" in
+  configure|reconfigure)
+	TIME_TO_CHANGE_TAIL_LINK=yes
+	;;
+# *)
+	# In other modes we don't need to do anything
+	# because we didn't take any action in the prerm
+esac
+
+if [ "$TIME_TO_CHANGE_TAIL_LINK" = yes ] ; then
+	if [ ! -e /etc/resolvconf/resolv.conf.d/tail ] ; then
+		db_get resolvconf/link-tail-to-original
+		if [ "$RET" = "true" ] ; then
+			ln -nsf original /etc/resolvconf/resolv.conf.d/tail
+		else
+			: > /etc/resolvconf/resolv.conf.d/tail
+		fi
+	fi
+fi
+
+### Linkify /etc/resolv.conf if appropriate ###
+TIME_TO_CHANGE_LINKIFICATION=no
+case "$1" in
+  configure|reconfigure)
+	TIME_TO_CHANGE_LINKIFICATION=yes
+	;;
+# *)
+	# In other modes we don't need to do anything
+	# because we didn't take any action in the prerm
+esac
+
+if [ "$TIME_TO_CHANGE_LINKIFICATION" = yes ] ; then
+	db_get resolvconf/linkify-resolvconf
+	if [ "$RET" = "true" ] ; then
+		# Back up
+		if \
+			[ -f /etc/resolv.conf ] \
+			&& { \
+				[ ! -L /etc/resolv.conf ] \
+				|| [ ! "$(readlink /etc/resolv.conf)" = "/etc/resolvconf/run/resolv.conf" ] ; \
+			}
+		then
+			if [ ! -e /etc/resolvconf/resolv.conf.d/original ] ; then
+				cp -a /etc/resolv.conf /etc/resolvconf/resolv.conf.d/original
+			else
+				cp -a /etc/resolv.conf /etc/resolv.conf.dpkg-old
+			fi
+			# Before creating the link, make sure that the original file is
+			# at the target of the link.  /sbin/resolvconf will overwrite
+			# this when it runs, of course.
+			if [ ! -e /etc/resolvconf/run/resolv.conf ] ; then
+				cp -a /etc/resolv.conf /etc/resolvconf/run/resolv.conf
+			fi
+		fi
+
+		# Create the link
+		ln -nsf /etc/resolvconf/run/resolv.conf /etc/resolv.conf
+	fi
+fi
+								
+db_stop
+
+### Enable updates ###
+if [ -x "/etc/init.d/resolvconf" ] ; then
+	if which invoke-rc.d >/dev/null 2>&1 ; then
+		invoke-rc.d resolvconf enable-updates || :
+	else
+		/etc/init.d/resolvconf enable-updates
+	fi
+fi
